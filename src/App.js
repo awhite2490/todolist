@@ -13,7 +13,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>test</h1>
+        <h1>ToDo</h1>
         {this.state.list}
       </div>
     );
