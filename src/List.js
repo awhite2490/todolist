@@ -24,7 +24,7 @@ class List extends React.Component {
     
       removeItem(i) {
         const curritems = this.state.items.slice()
-        curritems.splice(i, 1);
+        delete curritems[i];
         this.setState({items: curritems});
       }
 
