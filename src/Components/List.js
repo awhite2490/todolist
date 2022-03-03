@@ -34,6 +34,7 @@ class List extends React.Component {
         }
         return (
             <div>
+                <button onClick={() => this.addItem()}>Add New Item</button>
                 {this.state.items}
             </div>
         )
