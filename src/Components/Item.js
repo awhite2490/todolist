@@ -5,8 +5,9 @@ class Item extends React.Component {
         return (
             <div>
                 <input type="checkbox"/>
-                <input type="textbox" value={this.props.value}/>
+                <input type="textbox" value={this.props.text} />
                 <button onClick={() => this.props.removeItem(this.props.value)}>Delete</button>
+                <button onClick={() => this.props.changeItem(this.props.value, this.props.text)}>Save Item</button>
             </div>
         )
     }
