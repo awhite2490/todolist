@@ -16,7 +16,11 @@ const ItemInput = (props) => {
     
       return (
         <div>
-          <input type="text" value={newItem} onChange={handleChange}></input>
+          <input 
+            type="text" 
+            value={newItem} 
+            onChange={handleChange}
+          />
           <button onClick={addItem}>Add Item</button>
         </div>
       )

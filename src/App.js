@@ -4,27 +4,47 @@ import List from './Components/List.js';
 import ItemInput from './Components/ItemInput.js';
 
 const App = () => {
-  const[list, setList] = React.useState([]);
-  const[nextID, setNextID] = React.useState(0);
+  const[list, setList] = React.useState(
+    {
+        nextID: 0,
+        items: [],
+    }
+  )
 
     const addItem = (event) => {
-      const newItem = {itemID: nextID,text:event};
-      var newItems = list.slice();
-      newItems.push(newItem);
-      setList(newItems);
-      const newNextID = nextID + 1;
-      setNextID(newNextID);
+      const newItems = list.items.slice();
+      newItems.push({itemID: list.nextID,text:event,isComplete:false});
+      const newNextID = list.nextID + 1;
+      setList({nextID:newNextID, items:newItems});
+    }
+
+    const removeItem = (item) => {
+      const newItems = list.items.slice();
+      const indexToRemove = newItems.indexOf(item);
+      newItems.splice(indexToRemove, 1);
+      const newNextID = list.nextID;
+      setList({nextID:newNextID, items:newItems});
+    }
+
+    const toggleItemComplete = (item) => {
+      item.isComplete = !item.isComplete;
     }
 
     const save = () => {
+      /*Eventually this will post to a back-end service to save it*/
       alert(JSON.stringify(list));
     }
 
     return (
       <div>
-        <h1>ToDo</h1>
+        <h1>To-Do</h1>
         <ItemInput addItem={addItem} />
-        <List list={list}/>
+        <hr />
+        <List 
+          list={list.items} 
+          removeItem={removeItem} 
+          toggleItemComplete={toggleItemComplete}
+        />
         <button onClick={save}>Save</button>
       </div>
     );
