@@ -1,70 +1,60 @@
 import React from 'react';
 import './App.css';
-import Item from "./Components/Item.js";
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      items:[],
-      nextIndex:0,
+const App = () => {
+  const[list, setList] = React.useState([]);
+  const[nextID, setNextID] = React.useState(0);
+
+    const addItem = (event) => {
+      const newItem = {itemID: nextID,text:event};
+      var newItems = list.slice();
+      newItems.push(newItem);
+      setList(newItems);
+      const newNextID = nextID + 1;
+      setNextID(newNextID);
     }
-  }
 
-  changeText(index, text) {
-    alert(index);
-    alert(text);
-  }
-
-  changeItem(i, newValue) {
-    alert(i);
-    alert(newValue);
-    /*const currItems = this.state.items.slice()
-    const newItem = <Item
-                      removeItem={(i) => this.removeItem(i)}
-                      value= {newValue}
-                      key={i}
-                      changeItem={(z,n) => this.changeItem(z, n)}
-                      />
-    currItems[i] = newItem;
-    this.setState({items: currItems});*/
-  }
-
-  addItem() {
-    const curritems = this.state.items.slice()
-    const newItem = <Item 
-                      removeItem={(i) => this.removeItem(i)}
-                      value={this.state.nextIndex}
-                      changeItem={(z,n) => this.changeItem(z, n)}
-                      text=''
-                    />
-    var newIndex = this.state.nextIndex;
-    newIndex++;
-    this.setState({items:curritems.concat(newItem), nextIndex: newIndex});
-  }
-
-  removeItem(i) {
-    const curritems = this.state.items.slice()
-    delete curritems[i];
-    this.setState({items: curritems});
-  }
-
-  save() {
-    var foo = JSON.stringify(this.state);
-    alert(foo);
-  }
-
-  render() {
     return (
       <div>
         <h1>ToDo</h1>
-        <button onClick={() => this.addItem()}>Add New Item</button>
-        <button onClick={() => this.save()}>Save List</button>
-        <hr/>
-        {this.state.items}
+        <AddItem addItem={addItem} />
+        <List list={list}/>
       </div>
     );
-  }
 }
+
+const AddItem = (props) => {
+const [newItem, setNewItem] = React.useState('');
+
+  const addItem = () => {
+    props.addItem(newItem);
+    setNewItem('');
+  }
+
+  const handleChange =(event) => {
+    setNewItem(event.target.value);
+  }
+
+  return (
+    <div>
+      <input type="text" value={newItem} onChange={handleChange}></input>
+      <button onClick={addItem}>Add Item</button>
+    </div>
+  )
+}
+
+const List = (props) => {
+  return (
+    <ul>
+      {props.list.map((item) => (
+        <Item key={item.itemID} item={item} />
+      ))}
+    </ul>
+  );
+}
+
+const Item = (props) => (
+  <li>{props.item.text}<input type="checkbox"></input><button>Remove</button></li>
+)
 
 export default App
