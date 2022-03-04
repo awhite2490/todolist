@@ -4,8 +4,10 @@ const ItemInput = (props) => {
     const [newItem, setNewItem] = React.useState('');
     
       const addItem = () => {
-        props.addItem(newItem);
-        setNewItem('');
+        if(newItem !== '') {
+            props.addItem(newItem);
+            setNewItem('');
+        }
       }
     
       const handleChange =(event) => {

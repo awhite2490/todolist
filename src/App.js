@@ -16,11 +16,16 @@ const App = () => {
       setNextID(newNextID);
     }
 
+    const save = () => {
+      alert(JSON.stringify(list));
+    }
+
     return (
       <div>
         <h1>ToDo</h1>
         <ItemInput addItem={addItem} />
         <List list={list}/>
+        <button onClick={save}>Save</button>
       </div>
     );
 }
