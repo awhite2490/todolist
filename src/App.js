@@ -36,7 +36,7 @@ const App = () => {
     }
 
     return (
-      <div>
+      <div className="App">
         <h1>To-Do</h1>
         <ItemInput addItem={addItem} />
         <hr />
@@ -45,7 +45,12 @@ const App = () => {
           removeItem={removeItem} 
           toggleItemComplete={toggleItemComplete}
         />
-        <button onClick={save}>Save</button>
+        <button 
+          onClick={save}
+          className="Save-Button"
+        >
+          Save
+        </button>
       </div>
     );
 }

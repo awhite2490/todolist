@@ -15,13 +15,19 @@ const ItemInput = (props) => {
       }
     
       return (
-        <div>
+        <div className="Item-Input" >
           <input 
             type="text" 
             value={newItem} 
             onChange={handleChange}
+            className="Item-Input-TextBox"
           />
-          <button onClick={addItem}>Add Item</button>
+          <button 
+            onClick={addItem}
+            className= "Item-Input-Button"
+          >
+            Add Item
+          </button>
         </div>
       )
     }

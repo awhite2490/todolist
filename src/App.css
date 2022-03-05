@@ -1,3 +1,54 @@
-.Item-Complete {
+.Item {
+    display:flex;
+    flex-direction: row;
+    align-items:flex-start;
+}
+
+.Item-Label-Complete {
     text-decoration: line-through;
+    margin:0.5vw;
+}
+
+.App {
+    display:flex;
+    align-items:center;
+    flex-direction: column;
+}
+
+.Item-Input-TextBox {
+    margin: 0.5vw;
+    border-radius: 10px;
+}
+
+.Item-Input-Button {
+    background-color:cornflowerblue;
+    font-size:medium;
+}
+
+.Item-Remove-Button {
+    background-color:red;
+    font-size:medium;
+}
+
+.Save-Button {
+    background-color:limegreen;
+    font-size: large;
+}
+
+.Item-Checkbox {
+    margin: 0.2vw;
+}
+
+.Item-Label {
+    margin:0.5vw;
+}
+
+button {
+    background-color: grey;
+    color: white;
+    border-radius: 10px;
+    padding-bottom:0.5vh;
+    padding-top:0.5vh;
+    padding-left: 0.5vw;
+    padding-right: 0.5vw;
 }
