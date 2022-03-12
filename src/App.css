@@ -1,7 +1,8 @@
 .Item {
     display:flex;
     flex-direction: row;
-    align-items:flex-start;
+    justify-content: space-between;
+    width: 25vw;
 }
 
 .Item-Label-Complete {
@@ -15,9 +16,15 @@
     flex-direction: column;
 }
 
+.Item-Input {
+    
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+}
+
 .Item-Input-TextBox {
-    margin: 0.5vw;
-    border-radius: 10px;
+    margin-right:1vw;
 }
 
 .Item-Input-Button {

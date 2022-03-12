@@ -13,6 +13,12 @@ const ItemInput = (props) => {
       const handleChange =(event) => {
         setNewItem(event.target.value);
       }
+
+      const handleKeyPress = (event) => {
+        if (event.charCode === 13) {
+          addItem();
+        }
+      }
     
       return (
         <div className="Item-Input" >
@@ -20,6 +26,7 @@ const ItemInput = (props) => {
             type="text" 
             value={newItem} 
             onChange={handleChange}
+            onKeyPress={handleKeyPress}
             className="Item-Input-TextBox"
           />
           <button 
