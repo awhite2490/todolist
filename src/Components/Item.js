@@ -4,6 +4,14 @@ const Item = (props) => {
     const [isComplete, setIsComplete] = React.useState(props.item.isComplete)
     const [className, setClassName] = React.useState('Item-Label');
 
+    React.useEffect(() => {
+        if(isComplete) {
+            setClassName('Item-Label-Complete')
+        } else {
+            setClassName('Item-Label')
+        }
+    });
+
     const removeItem = () => {
         props.removeItem(props.item)
     }
@@ -11,11 +19,6 @@ const Item = (props) => {
     const handleCheck = () => {
         setIsComplete(!isComplete);
         props.toggleItemComplete(props.item);
-        if(!isComplete) {
-            setClassName('Item-Label-Complete')
-        } else {
-            setClassName('Item-Label')
-        }
     }
 
     return (   

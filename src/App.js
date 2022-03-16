@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './App.css';
 import List from './Components/List.js';
 import ItemInput from './Components/ItemInput.js';
@@ -8,7 +8,7 @@ const App = () => {
 
   const[list, setList] = React.useState([])
 
-  useEffect(() => {
+  React.useEffect(() => {
     fetch(api)
     .then(response => response.json())
     .then(
@@ -25,12 +25,9 @@ const App = () => {
       const response = fetch(api, {
         method: 'POST',
         mode: 'cors',
-        cache: 'no-cache',
         headers: {
           'Content-Type': 'application/json'
         },
-        redirect: 'follow',
-        referrerPolicy: 'no-referrer',
         body: `{"text":"${event}", "isComplete":"false"}`
       });
     }
@@ -39,22 +36,18 @@ const App = () => {
       const response = fetch(api + item._id, {
         method: 'DELETE',
         mode: 'cors',
-        cache: 'no-cache',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        redirect: 'follow',
-        referrerPolicy: 'no-referrer',
-
       })
     }
 
     const toggleItemComplete = (item) => {
-      item.isComplete = !item.isComplete;
-    }
-
-    const test = () => {
-      console.log(JSON.stringify(list));
+      fetch(api + item._id, {
+        method: 'PUT',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: `{"text":"${item.text}","isComplete":"${!item.isComplete}"}`
+      });
     }
 
     return (
@@ -70,6 +63,5 @@ const App = () => {
       </div>
     );
 }
-
 
 export default App

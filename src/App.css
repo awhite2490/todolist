@@ -2,7 +2,6 @@
     display:flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 25vw;
 }
 
 .Item-Label-Complete {
@@ -17,7 +16,6 @@
 }
 
 .Item-Input {
-    
     display:flex;
     flex-direction:row;
     justify-content:space-between;
@@ -29,17 +27,10 @@
 
 .Item-Input-Button {
     background-color:cornflowerblue;
-    font-size:medium;
 }
 
 .Item-Remove-Button {
     background-color:red;
-    font-size:medium;
-}
-
-.Save-Button {
-    background-color:limegreen;
-    font-size: large;
 }
 
 .Item-Checkbox {
@@ -51,11 +42,7 @@
 }
 
 button {
-    background-color: grey;
-    color: white;
-    border-radius: 10px;
-    padding-bottom:0.5vh;
-    padding-top:0.5vh;
-    padding-left: 0.5vw;
-    padding-right: 0.5vw;
+    border: none;
+    margin:0.25vw;
+    cursor: pointer;
 }
