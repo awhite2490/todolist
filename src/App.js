@@ -22,7 +22,7 @@ const App = () => {
   })
 
     const addItem = (event) => {
-      const response = fetch(api, {
+      fetch(api, {
         method: 'POST',
         mode: 'cors',
         headers: {
@@ -33,7 +33,7 @@ const App = () => {
     }
 
     const removeItem = (item) => {
-      const response = fetch(api + item._id, {
+      fetch(api + item._id, {
         method: 'DELETE',
         mode: 'cors',
       })
