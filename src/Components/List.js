@@ -5,7 +5,7 @@ const List = (props) => {
       <ul>
         {props.list.map((item) => (
           <Item 
-            key={item.itemID} 
+            key={item._id} 
             item={item} 
             removeItem={props.removeItem} 
             toggleItemComplete={props.toggleItemComplete}

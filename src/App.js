@@ -1,56 +1,72 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import List from './Components/List.js';
 import ItemInput from './Components/ItemInput.js';
 
 const App = () => {
-  const[list, setList] = React.useState(
-    {
-        nextID: 0,
-        items: [],
-    }
-  )
+  const api = 'http://localhost:3001/items/'; 
+
+  const[list, setList] = React.useState([])
+
+  useEffect(() => {
+    fetch(api)
+    .then(response => response.json())
+    .then(
+      (result) => {
+        setList(result);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  })
 
     const addItem = (event) => {
-      const newItems = list.items.slice();
-      newItems.push({itemID: list.nextID,text:event,isComplete:false});
-      const newNextID = list.nextID + 1;
-      setList({nextID:newNextID, items:newItems});
+      const response = fetch(api, {
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        redirect: 'follow',
+        referrerPolicy: 'no-referrer',
+        body: `{"text":"${event}", "isComplete":"false"}`
+      });
     }
 
     const removeItem = (item) => {
-      const newItems = list.items.slice();
-      const indexToRemove = newItems.indexOf(item);
-      newItems.splice(indexToRemove, 1);
-      const newNextID = list.nextID;
-      setList({nextID:newNextID, items:newItems});
+      const response = fetch(api + item._id, {
+        method: 'DELETE',
+        mode: 'cors',
+        cache: 'no-cache',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        redirect: 'follow',
+        referrerPolicy: 'no-referrer',
+
+      })
     }
 
     const toggleItemComplete = (item) => {
       item.isComplete = !item.isComplete;
     }
 
-    const save = () => {
-      /*Eventually this will post to a back-end service to save it*/
-      alert(JSON.stringify(list));
+    const test = () => {
+      console.log(JSON.stringify(list));
     }
 
     return (
       <div className="App">
         <h1>To-Do</h1>
         <ItemInput addItem={addItem} />
-        <hr />
         <List 
-          list={list.items} 
+          list={list} 
           removeItem={removeItem} 
           toggleItemComplete={toggleItemComplete}
         />
-        <button 
-          onClick={save}
-          className="Save-Button"
-        >
-          Save
-        </button>
+        <hr />
       </div>
     );
 }
